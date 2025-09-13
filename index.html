@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vuka-Mzantsi Creative Suite | 50+ AI Tools</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #06b6d4;
+            --primary-dark: #0891b2;
+            --secondary: #8b5cf6;
+            --dark: #07080b;
+            --dark-light: #0f1724;
+            --darker: #020617;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --border: #273241;
+            --card-bg: #0f1724;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: var(--darker);
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo img {
+            height: 40px;
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .credits {
+            background: var(--dark-light);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .credits i {
+            color: var(--primary);
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 60px 0;
+            text-align: center;
+            background: linear-gradient(to bottom, var(--darker), var(--dark));
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 16px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto 32px;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .stat-label {
+            font-size: 16px;
+            color: var(--text-muted);
+        }
+        
+        /* Tools Grid */
+        .section-title {
+            font-size: 28px;
+            margin: 40px 0 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border);
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+        
+        .tool-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 24px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid var(--border);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            border-color: var(--primary);
+        }
+        
+        .tool-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            font-size: 20px;
+        }
+        
+        .tool-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .tool-desc {
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            flex-grow: 1;
+        }
+        
+        .tool-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+        
+        .tool-cost {
+            color: var(--primary);
+            font-weight: 500;
+        }
+        
+        .tool-button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+        
+        .tool-button:hover {
+            background: var(--primary-dark);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--darker);
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        
+        .footer-info {
+            max-width: 400px;
+        }
+        
+        .footer-title {
+            font-size: 20px;
+            margin-bottom: 16px;
+            color: var(--primary);
+        }
+        
+        .footer-contact {
+            margin-top: 20px;
+        }
+        
+        .footer-partners {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .partner {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .partner-badge {
+            background: var(--dark-light);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 16px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .stats {
+                flex-wrap: wrap;
+            }
+            
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--dark-light);
+            padding: 30px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .close {
+            color: var(--text-muted);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .modal-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            background: var(--dark);
+            color: var(--text);
+        }
+
+        .submit-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-dark);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-text">Vuka-Mzantsi</div>
+                </div>
+                <div class="user-info">
+                    <div class="credits">
+                        <i class="fas fa-coins"></i>
+                        <span id="credit-balance">50,000</span> Credits
+                    </div>
+                    <div class="user-avatar">MM</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Vuka-Mzantsi Creative Suite</h1>
+            <p>50+ AI Tools | 50,000 Daily Free Credits | Built in 🇿🇦 South Africa</p>
+            
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">AI Tools</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">50,000</div>
+                    <div class="stat-label">Free Credits/Day</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Support</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Text Generation Tools -->
+        <h2 class="section-title">Text Generation</h2>
+        <div class="tools-grid">
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fas fa-font"></i></div>
+                <h3 class="tool-title">Text Generation</h3>
+                <p class="tool-desc">Generate high-quality content, articles, stories, and more with advanced AI models.</p>
+                <div class="tool-meta">
+                    <span class="tool-cost">5 credits</span>
+                    <button class="tool-button" data-tool="text-generation">Use Tool</button>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fas fa-language"></i></div>
+                <h3 class="tool-title">Translation</h3>
+                <p class="tool-desc">Translate text between 100+ languages with accurate context preservation.</p>
+                <div class="tool-meta">
+                    <span class="tool-cost">2 credits</span>
+                    <button class="tool-button" data-tool="translation">Use Tool</button>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fas fa-file-alt"></i></div>
+                <h3 class="tool-title">Summarization</h3>
+                <p class="tool-desc">Condense long documents into concise summaries while preserving key information.</p>
+                <div class="tool-meta">
+                    <span class="tool-cost">3 credits</span>
+                    <button class="tool-button" data-tool="summarization">Use Tool</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Image Generation Tools -->
+        <h2 class="section-title">Image Generation & Editing</h2>
+        <div class="tools-grid">
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fas fa-image"></i></div>
+                <h3 class="tool-title">Text to Image</h3>
+                <p class="tool-desc">Create stunning 4K images from text descriptions with multiple style options.</p>
+                <div class="tool-meta">
+                    <span class="tool-cost">10 credits</span>
+                    <button class="tool-button" data-tool="text-to-image">Use Tool</button>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fas fa-expand-arrows-alt"></i></div>
+                <h3 class="tool-title">Image Upscaling</h3>
+                <p class="tool-desc">Increase image resolution up to 4x without losing quality using AI enhancement.</p>
+                <div class="tool-meta">
+                    <span class="tool-cost">20 credits</span>
+                    <button class="tool-button" data-tool="image-upscaling">Use Tool</button>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fas fa-magic"></i></div>
+                <h3 class="tool-title">Background Removal</h3>
+                <p class="tool-desc">Instantly remove backgrounds from images with perfect edge detection.</p>
+                <div class="tool-meta">
+                    <span class="tool-cost">15 credits</span>
+                    <button class="tool-button" data-tool="background-removal">Use Tool</button>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fas fa-paint-brush"></i></div>
+                <h3 class="tool-title">Image Editing</h3>
+                <p class="tool-desc">AI-powered image editing with object removal, inpainting, and style transfer.</p>
+                <div class="tool-meta">
+                    <span class="tool-cost">15 credits</span>
+                    <button class="tool-button" data-tool="image-editing">Use Tool</button>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fas fa-cube"></i></div>
+                <h3 class="tool-title">3D Image Generation</h3>
+                <p class="tool-desc">Convert 2D images to 3D models with depth maps and normal mapping.</p>
+                <div class="tool-meta">
+                    <span class="tool-cost">100 credits</span>
+                    <button class="tool-button" data-tool="3d-image">Use Tool</button>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fas fa-retweet"></i></div>
+                <h3 class="tool-title">Style Transfer</h3>
+                <p class="tool-desc">Apply artistic styles to your images using various artistic techniques.</p>
+                <div class="tool-meta">
+                    <span class="tool-cost">15 credits</span>
+                    <button class="tool-button" data-tool="style-transfer">Use Tool</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Video Tools -->
+        <h2 class="section-title">Video Generation & Editing</h2>
+        <div class="tools-grid">
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fas fa-video"></i></div>
+                <h3 class="tool-title">Text to Video</h3>
+                <p class="tool-desc">Generate short video clips from text descriptions with customizable duration.</p>
+                <div class="tool-meta">
+                    <span class="tool-cost">5 credits/sec</span>
+                    <button class="tool-button" data-tool="text-to-video">Use Tool</button>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fas fa-film"></i></div>
+                <h3 class="tool-title">Image to Video</h3>
+                <p class="tool-desc">Animate still images into dynamic video sequences with motion effects.</p>
+                <div class="tool-meta">
+                    <span class="tool-cost">5 credits/sec</span>
+                    <button class="tool-button" data-tool="image-to-video">Use Tool</button>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fas fa-closed-captioning"></i></div>
+                <h3 class="tool-title">Subtitle Generation</h3>
+                <p class="tool-desc">Automatically generate accurate subtitles for videos in multiple languages.</p>
+                <div class="tool-meta">
+                    <span class="tool-cost">20 credits</span>
+                    <button class="tool-button" data-tool="subtitle-generation">Use Tool</button>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fas fa-tachometer-alt"></i></div>
+                <h3 class="tool-title">Video Upscaling</h3>
+                <p class="tool-desc">Enhance video resolution from SD to HD or HD to 4K with AI processing.</p>
+                <div class="tool-meta">
+                    <span class="tool-cost">200 credits</span>
+                    <button class="tool-button" data-tool="video-upscaling">Use Tool</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Audio Tools -->
+        <h2 class="section-title">Audio Generation & Editing</h2>
+        <div class="tools-grid">
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fas fa-microphone"></i></div>
+                <h3 class="tool-title">Text to Speech</h3>
+                <p class="tool-desc">Convert text to natural-sounding speech with multiple voice options.</p>
+                <div class="tool-meta">
+                    <span class="tool-cost">10 credits</span>
+                    <button class="tool-button" data-tool="text-to-speech">Use Tool</button>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fas fa-music"></i></div>
+                <h3 class="tool-title">Text to Music</h3>
+                <p class="tool-desc">Generate original music tracks from text descriptions in various genres.</p>
+                <div class="tool-meta">
+                    <span class="tool-cost">10 credits/30s</span>
+                    <button class="tool-button" data-tool="text-to-music">Use Tool</button>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fas fa-assistive-listening-systems"></i></div>
+                <h3 class="tool-title">Audio Enhancement</h3>
+                <p class="tool-desc">Remove background noise and improve audio quality with AI processing.</p>
+                <div class="tool-meta">
+                    <span class="tool-cost">15 credits</span>
+                    <button class="tool-button" data-tool="audio-enhancement">Use Tool</button>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fas fa-wave-square"></i></div>
+                <h3 class="tool-title">Audio Separation</h3>
+                <p class="tool-desc">Separate audio tracks into vocals, instruments, and stems for remixing.</p>
+                <div class="tool-meta">
+                    <span class="tool-cost">25 credits</span>
+                    <button class="tool-button" data-tool="audio-separation">Use Tool</button>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fas fa-user-plus"></i></div>
+                <h3 class="tool-title">Voice Cloning</h3>
+                <p class="tool-desc">Create a digital voice clone from a short sample for personalized TTS.</p>
+                <div class="tool-meta">
+                    <span class="tool-cost">500 credits</span>
+                    <button class="tool-button" data-tool="voice-cloning">Use Tool</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Business Tools -->
+        <h2 class="section-title">Business & Productivity</h2>
+        <div class="tools-grid">
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fas fa-chart-line"></i></div>
+                <h3 class="tool-title">Analytics Reports</h3>
+                <p class="tool-desc">Generate detailed analytics reports from datasets with AI-powered insights.</p>
+                <div class="tool-meta">
+                    <span class="tool-cost">50 credits</span>
+                    <button class="tool-button" data-tool="analytics-reports">Use Tool</button>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fas fa-bullhorn"></i></div>
+                <h3 class="tool-title">Ad Copy Generation</h3>
+                <p class="tool-desc">Create compelling ad copies and marketing content for various platforms.</p>
+                <div class="tool-meta">
+                    <span class="tool-cost">10 credits</span>
+                    <button class="tool-button" data-tool="ad-copy">Use Tool</button>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fas fa-file-contract"></i></div>
+                <h3 class="tool-title">Contract Generation</h3>
+                <p class="tool-desc">Draft legal contracts and agreements based on your specific requirements.</p>
+                <div class="tool-meta">
+                    <span class="tool-cost">25 credits</span>
+                    <button class="tool-button" data-tool="contract-generation">Use Tool</button>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fas fa-blog"></i></div>
+                <h3 class="tool-title">SEO & Blog Content</h3>
+                <p class="tool-desc">Create SEO-optimized blog posts and articles with keyword targeting.</p>
+                <div class="tool-meta">
+                    <span class="tool-cost">10 credits</span>
+                    <button class="tool-button" data-tool="seo-blog">Use Tool</button>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fas fa-presentation"></i></div>
+                <h3 class="tool-title">Presentation Builder</h3>
+                <p class="tool-desc">Generate complete presentations with slides, notes, and image suggestions.</p>
+                <div class="tool-meta">
+                    <span class="tool-cost">100 credits</span>
+                    <button class="tool-button" data-tool="presentation-builder">Use Tool</button>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fas fa-briefcase"></i></div>
+                <h3 class="tool-title">Resume Generator</h3>
+                <p class="tool-desc">Create professional resumes and CVs tailored to specific job roles.</p>
+                <div class="tool-meta">
+                    <span class="tool-cost">5 credits</span>
+                    <button class="tool-button" data-tool="resume-generator">Use Tool</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Development Tools -->
+        <h2 class="section-title">Development & Code</h2>
+        <div class="tools-grid">
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fas fa-code"></i></div>
+                <h3 class="tool-title">Code Generation</h3>
+                <p class="tool-desc">Generate code snippets and functions in multiple programming languages.</p>
+                <div class="tool-meta">
+                    <span class="tool-cost">10 credits</span>
+                    <button class="tool-button" data-tool="code-generation">Use Tool</button>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fas fa-bug"></i></div>
+                <h3 class="tool-title">Code Debugging</h3>
+                <p class="tool-desc">Identify and fix errors in your code with AI-powered debugging.</p>
+                <div class="tool-meta">
+                    <span class="tool-cost">15 credits</span>
+                    <button class="tool-button" data-tool="code-debugging">Use Tool</button>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fas fa-robot"></i></div>
+                <h3 class="tool-title">AI Chat Assistant</h3>
+                <p class="tool-desc">Interactive AI assistant for answering questions and providing guidance.</p>
+                <div class="tool-meta">
+                    <span class="tool-cost">1 credit/message</span>
+                    <button class="tool-button" data-tool="ai-chat">Use Tool</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Tools -->
+        <h2 class="section-title">Specialized Tools</h2>
+        <div class="tools-grid">
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fas fa-brain"></i></div>
+                <h3 class="tool-title">ML Model Training</h3>
+                <p class="tool-desc">Train custom machine learning models with your datasets (fine-tuning).</p>
+                <div class="tool-meta">
+                    <span class="tool-cost">1000 credits</span>
+                    <button class="tool-button" data-tool="ml-training">Use Tool</button>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fas fa-file-archive"></i></div>
+                <h3 class="tool-title">Batch Processing</h3>
+                <p class="tool-desc">Process multiple files in batch for consistent AI transformations.</p>
+                <div class="tool-meta">
+                    <span class="tool-cost">50 credits</span>
+                    <button class="tool-button" data-tool="batch-processing">Use Tool</button>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fas fa-qrcode"></i></div>
+                <h3 class="tool-title">QR Code Generation</h3>
+                <p class="tool-desc">Create customized QR codes with logos and brand colors.</p>
+                <div class="tool-meta">
+                    <span class="tool-cost">5 credits</span>
+                    <button class="tool-button" data-tool="qr-generation">Use Tool</button>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fas fa-vector-square"></i></div>
+                <h3 class="tool-title">Logo Generation</h3>
+                <p class="tool-desc">Design professional logos for your brand with multiple style options.</p>
+                <div class="tool-meta">
+                    <span class="tool-cost">15 credits</span>
+                    <button class="tool-button" data-tool="logo-generation">Use Tool</button>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fas fa-search"></i></div>
+                <h3 class="tool-title">Content from URL</h3>
+                <p class="tool-desc">Extract and summarize content from web pages or generate similar content.</p>
+                <div class="tool-meta">
+                    <span class="tool-cost">10 credits</span>
+                    <button class="tool-button" data-tool="content-from-url">Use Tool</button>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="tool-icon"><i class="fas fa-scroll"></i></div>
+                <h3 class="tool-title">Long-form Video Scripts</h3>
+                <p class="tool-desc">Create detailed scripts and storyboards for long videos (10-60 minutes).</p>
+                <div class="tool-meta">
+                    <span class="tool-cost">50 credits/min</span>
+                    <button class="tool-button" data-tool="video-scripts">Use Tool</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3 class="footer-title">Vuka-Mzantsi Creative Suite</h3>
+                    <p>An all-in-one AI platform with 50+ tools for content creation, built with pride in South Africa.</p>
+                    
+                    <div class="footer-contact">
+                        <p><strong>Founders:</strong> Mr. M Mbethe</p>
+                        <p><strong>Contact:</strong> 063 946 1962</p>
+                        <p><strong>Email:</strong> djmantomboss@gmail.com</p>
+                    </div>
+                </div>
+                
+                <div class="footer-partners">
+                    <h3 class="footer-title">Partners & Affiliates</h3>
+                    <div class="partner">
+                        <span class="partner-badge">KHUPHULA IZINGA SA DEVELOPMENT AGENCIES</span>
+                    </div>
+                    <div class="partner">
+                        <span class="partner-badge">KHUPHULA IZINGA RADIO FM</span>
+                    </div>
+                    <div class="partner">
+                        <span class="partner-badge">KIP RECORDS</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Vuka-Mzantsi Creative Suite. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Tool Modal -->
+    <div class="modal" id="tool-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Use Tool</h2>
+                <span class="close">&times;</span>
+            </div>
+            <form class="modal-form" id="tool-form">
+                <div class="form-group">
+                    <label for="tool-input">Input</label>
+                    <textarea id="tool-input" rows="4" placeholder="Enter your input here..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="tool-options">Options</label>
+                    <select id="tool-options">
+                        <option value="default">Default</option>
+                        <option value="professional">Professional</option>
+                        <option value="creative">Creative</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-btn">Generate</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Simple credit system simulation
+        let userCredits = 50000;
+        
+        // Update credit display
+        function updateCreditDisplay() {
+            document.getElementById('credit-balance').textContent = userCredits.toLocaleString();
+        }
+        
+        // Modal functionality
+        const modal = document.getElementById('tool-modal');
+        const closeBtn = document.querySelector('.close');
+        const modalTitle = document.getElementById('modal-title');
+        const toolForm = document.getElementById('tool-form');
+        let currentTool = '';
+        
+        // Open modal when tool button is clicked
+        document.querySelectorAll('.tool-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const toolName = this.getAttribute('data-tool');
+                const toolTitle = this.parentElement.parentElement.querySelector('.tool-title').textContent;
+                const costText = this.parentElement.querySelector('.tool-cost').textContent;
+                let cost = 0;
+                
+                // Parse cost text
+                if (costText.includes('/')) {
+                    // This is a rate-based cost (like 5 credits/sec)
+                    cost = parseInt(costText);
+                } else {
+                    cost = parseInt(costText);
+                }
+                
+                if (userCredits >= cost) {
+                    currentTool = toolName;
+                    modalTitle.textContent = toolTitle;
+                    modal.style.display = 'flex';
+                } else {
+                    alert('Insufficient credits! Please wait for your daily refresh or upgrade your plan.');
+                }
+            });
+        });
+        
+        // Close modal
+        closeBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+        
+        // Form submission
+        toolForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const input = document.getElementById('tool-input').value;
+            const options = document.getElementById('tool-options').value;
+            
+            // Simulate processing
+            alert(`Processing your ${currentTool} request...\nInput: ${input}\nOptions: ${options}`);
+            
+            // Deduct credits (simplified)
+            userCredits -= 10;
+            updateCreditDisplay();
+            
+            // Close modal
+            modal.style.display = 'none';
+        });
+        
+        // Initialize
+        updateCreditDisplay();
+    </script>
+</body>
+</html>
